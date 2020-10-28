@@ -49,11 +49,6 @@
       "name": "Absorvente",
       "price": "15.99",
       "id": 11
-    },
-    {
-      "name": "Saco preto ",
-      "price": "10.00",
-      "id": 12
     }
   ],
   "eventos": [
@@ -65,7 +60,7 @@
       "address": "Butantã"
     },
     {
-      "name": "Kits higienicos",
+      "name": "Kits ",
       "description": "20/09/2020",
       "address": "AV. Paulista",
       "status": "Ativo",

@@ -26,12 +26,12 @@ export class ItemDoacaoCreateComponent implements OnInit {
 
   createItemDoacao(): void{
     this.itemDoacaoService.create(this.itemDoacao).subscribe(() => {
-      this.itemDoacaoService.showMessage('Item criado!')
-      this.router.navigate(['/itemDoacao'])
+      this.itemDoacaoService.showMessage('Item Doação cadastrado!')
+      this.router.navigate(['/itemdoacao'])
     })
   }
 
   cancel(): void{
-    this.router.navigate(['/itemDoacao'])
+    this.router.navigate(['/itemdoacao'])
   }
 }

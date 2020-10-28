@@ -16,19 +16,19 @@ const routes: Routes = [{
   path:"",
   component: HomeComponent},
   {
-    path:"itemDoacao",
+    path:"itemdoacao",
     component: ItemDoacaoCrudComponent
   },
   {
-    path:"itemDoacao/create",
+    path:"itemdoacao/create",
     component: ItemDoacaoCreateComponent
   },
   {
-    path:"itemDoacao/update/:id",
+    path:"itemdoacao/update/:id",
     component: ItemDoacaoUpdateComponent
   },
   {
-    path:"itemDoacao/delete/:id",
+    path:"itemdoacao/delete/:id",
     component: ItemDoacaoDeleteComponent
   },
   {

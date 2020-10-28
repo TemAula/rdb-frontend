@@ -1,8 +1,7 @@
-import { ItemDoacaoRead2Component } from './components/itemDoacao/itemDoacao-read2/itemDoacao-read2.component';
 import { ItemDoacaoReadComponent } from './components/itemDoacao/itemDoacao-read/itemDoacao-read.component';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID, Component } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,7 +56,6 @@ registerLocaleData(localePt);
     ForDirective,
     ItemDoacaoCreateComponent,
     ItemDoacaoReadComponent,
-    ItemDoacaoRead2Component,
     ItemDoacaoUpdateComponent,
     ItemDoacaoDeleteComponent,
     EventosCrudComponent,

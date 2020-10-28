@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root'
 })
 export class EventosService {
-  baseUrl="http://localhost:3001/eventos";
+  baseUrl="http://localhost:3001";
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) {
 
@@ -24,42 +24,31 @@ export class EventosService {
     });
   }
 
-  create(eventos: Eventos): Observable<Eventos>{
-    return this.http.post<Eventos>(this.baseUrl, eventos).pipe(
-      map((obj) => obj),
-      catchError((e) => this.errorHandler(e))
-    );
+  create(eventos: Eventos){
+    return this.http.post(`${this.baseUrl}/eventos`, eventos);
   }
 
-  read(): Observable<Eventos[]>{
-    return this.http.get<Eventos[]>(this.baseUrl).pipe(
-      map((obj) => obj),
-      catchError((e) => this.errorHandler(e))
-    );
+  getAll(){
+    return this.http.get(`${this.baseUrl}/eventos`);
   }
 
-  readById(id: number): Observable<Eventos>{
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.get<Eventos>(url).pipe(
-      map((obj) => obj),
-      catchError((e) => this.errorHandler(e))
-    );
+  read(){
+    return this.http.get(`${this.baseUrl}/eventos`)
+  }
+
+  readById(id: number){
+    const url = `${this.baseUrl}/eventos/${id}`;
+    return this.http.get<Eventos>(url)
    }
 
-   update(eventos: Eventos): Observable<Eventos>{
-    const url = `${this.baseUrl}/${eventos.id}`;
-    return this.http.put<Eventos>(url, eventos).pipe(
-      map((obj) => obj),
-      catchError((e) => this.errorHandler(e))
-    );
+  update(eventos: Eventos): Observable<Eventos>{
+    const url = `${this.baseUrl}/eventos/${eventos.id}`;
+    return this.http.put<Eventos>(url, eventos);
   }
 
-  delete(id: number): Observable<Eventos>{
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.delete<Eventos>(url).pipe(
-      map((obj) => obj),
-      catchError((e) => this.errorHandler(e))
-    );
+  delete(id: number){
+    const url = `${this.baseUrl}/eventos/${id}`;
+    return this.http.delete(url)
   }
 
   errorHandler(e: any): Observable<any>{

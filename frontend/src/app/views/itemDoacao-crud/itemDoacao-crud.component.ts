@@ -13,7 +13,7 @@ export class ItemDoacaoCrudComponent implements OnInit {
     headerService.headerData = {
       title: 'Cadastro de Itens',
       icon: 'storefront',
-      routeUrl: '/itemDoacao'
+      routeUrl: '/itemdoacao'
    }
   }
 
@@ -23,6 +23,6 @@ export class ItemDoacaoCrudComponent implements OnInit {
   }
 
   navigateToItemDoacaoCreate(): void{
-    this.router.navigate(['/itemDoacao/create'])
+    this.router.navigate(['/itemdoacao/create'])
   }
 }

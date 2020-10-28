@@ -1,4 +1,4 @@
-import { ItemDoacao } from '../itemDoacao.model';
+import { ItemDoacao } from './../itemDoacao.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ItemDoacaoService } from '../itemDoacao.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class ItemDoacaoUpdateComponent implements OnInit {
 
   itemDoacao: ItemDoacao
+  private id: number;
 
   constructor(
     private itemDoacaoService: ItemDoacaoService, 
@@ -19,20 +20,25 @@ export class ItemDoacaoUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap.get('id')
-    this.itemDoacaoService.readById(id).subscribe(itemDoacao =>{
-      this.itemDoacao = itemDoacao;
+    this.route.params.subscribe(getParam => {
+      this.itemDoacaoService.readById(getParam.id).subscribe((itemDoacao: any) => {
+        this.itemDoacao = itemDoacao;
+      });
+      this.id = getParam.id;
+    }, erro => {
+      console.log('Erro ao pegar ID', erro);
     });
   }
 
   updateItemDoacao(): void {
+    console.log(this.itemDoacao);
     this.itemDoacaoService.update(this.itemDoacao).subscribe(() =>{
-      this.itemDoacaoService.showMessage('Item atualizado com sucesso!')
-      this.router.navigate(['/itemDoacao']);
+      this.itemDoacaoService.showMessage('Item Doação atualizado com sucesso!')
+      this.router.navigate(['/itemdoacao']);
     })
   }
 
   cancel(): void{
-    this.router.navigate(["/itemDoacao"]);
+    this.router.navigate(["/itemdoacao"]);
   }
 }

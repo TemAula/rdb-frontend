@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventosCreateComponent implements OnInit {
 
- evento: Eventos = {
+ eventos: Eventos = {
    name: '',
    description: '',
    address: '',
@@ -23,13 +23,12 @@ export class EventosCreateComponent implements OnInit {
 
   }
 
-
   ngOnInit(): void {
     
   }
 
   createEventos(): void{
-    this.eventosService.create(this.evento).subscribe(() => {
+    this.eventosService.create(this.eventos).subscribe(() => {
       this.eventosService.showMessage('Evento Criado!')
       this.router.navigate(['/eventos'])
     })

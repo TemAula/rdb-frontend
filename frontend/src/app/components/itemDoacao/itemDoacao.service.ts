@@ -10,7 +10,7 @@ import { Observable, EMPTY } from 'rxjs';
 })
 export class ItemDoacaoService {  
 
-  baseUrl="http://localhost:3001/itemDoacao";
+  baseUrl="http://localhost:3001";
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) {
 
@@ -25,42 +25,34 @@ export class ItemDoacaoService {
     });
   }
 
-  create(itemDoacao: ItemDoacao): Observable<ItemDoacao>{
-    return this.http.post<ItemDoacao>(this.baseUrl, itemDoacao).pipe(
-      map((obj) => obj),
-      catchError((e) => this.errorHandler(e))
-    );
+  create(itemDoacao: ItemDoacao){
+    return this.http.post(`${this.baseUrl}/itemdoacao`, itemDoacao)
   }
 
-  read(): Observable<ItemDoacao[]>{
-    return this.http.get<ItemDoacao[]>(this.baseUrl).pipe(
-      map((obj) => obj),
-      catchError((e) => this.errorHandler(e))
-    );
+  getAll(){
+    return this.http.get(`${this.baseUrl}/itemdoacao`);
   }
 
-  readById(id: number): Observable<ItemDoacao>{
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.get<ItemDoacao>(url).pipe(
-      map((obj) => obj),
-      catchError((e) => this.errorHandler(e))
-    );
+  read(){
+    return this.http.get(`${this.baseUrl}/itemdoacao`);
   }
 
-  update(itemDoacao: ItemDoacao): Observable<ItemDoacao>{
-    const url = `${this.baseUrl}/${itemDoacao.id}`;
+  readById(id: number){
+    const url = `${this.baseUrl}/itemdoacao/${id}`;
+    return this.http.get<ItemDoacao>(url)
+  }
+
+  update(itemDoacao: ItemDoacao){
+    const url = `${this.baseUrl}/itemdoacao/${itemDoacao.id}`;
     return this.http.put<ItemDoacao>(url, itemDoacao).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );
   }
 
-  delete(id: number): Observable<ItemDoacao>{
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.delete<ItemDoacao>(url).pipe(
-      map((obj) => obj),
-      catchError((e) => this.errorHandler(e))
-    );
+  delete(id: number){
+    const url = `${this.baseUrl}/itemdoacao/${id}`;
+    return this.http.delete(url)
   }
 
   errorHandler(e: any): Observable<any>{

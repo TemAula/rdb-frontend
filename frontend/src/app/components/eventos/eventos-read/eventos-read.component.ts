@@ -9,7 +9,7 @@ import { Eventos } from '../eventos.model';
 })
 export class EventosReadComponent implements OnInit {
 
-  evento: Eventos[];
+  eventos: Eventos[];
   displayedColumns = ['id', 'name', 'description','address', 'status', 'action']
 
   constructor(private eventosService: EventosService) { 
@@ -17,9 +17,10 @@ export class EventosReadComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.eventosService.read().subscribe(evento => {
-      this.evento = evento
-      console.log(evento);
+    this.eventosService.getAll().subscribe((eventos: any) => { console.log(eventos); this.eventos = eventos});
+    this.eventosService.read().subscribe((eventos: any) => {
+    this.eventos = eventos;
+      console.log(eventos);
     })
   }
 

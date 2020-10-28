@@ -10,7 +10,8 @@ import { Eventos } from '../eventos.model';
 })
 export class EventosUpdateComponent implements OnInit {
 
-  evento: Eventos;
+  eventos: Eventos;
+  private id: number;
 
   constructor(
     private eventosService: EventosService, 
@@ -19,14 +20,19 @@ export class EventosUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap.get('id')
-    this.eventosService.readById(id).subscribe(evento =>{
-      this.evento = evento;
-    })
+    this.route.params.subscribe(getParam => {
+      this.eventosService.readById(getParam.id).subscribe((eventos: any) => {
+        this.eventos = eventos;
+      });
+      this.id = getParam.id;
+    }, erro => {
+      console.log('Erro ao pegar ID', erro);
+    });
   }
 
   updateEventos(): void{
-    this.eventosService.update(this.evento).subscribe(() =>{
+    console.log(this.eventos);
+    this.eventosService.update(this.eventos).subscribe(() =>{
       this.eventosService.showMessage('Evento atualizado com sucesso!')
       this.router.navigate(['/eventos']);
     })

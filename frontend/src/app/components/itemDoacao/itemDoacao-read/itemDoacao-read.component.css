@@ -6,10 +6,10 @@ table {
     margin-right: 10px;
 }
 
-.edit>i {
+.edit>em {
     color: #222b3b;
 }
 
-.delete>i {
+.delete>em {
     color: #e35e6b;
 }

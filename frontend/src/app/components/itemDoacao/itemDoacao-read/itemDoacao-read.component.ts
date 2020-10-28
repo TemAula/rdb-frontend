@@ -9,15 +9,16 @@ import { ItemDoacao } from '../itemDoacao.model';
 })
 export class ItemDoacaoReadComponent implements OnInit {
 
-  itensDoacao: ItemDoacao[]
+  itemDoacao: ItemDoacao[]
   displayedColumns = ['id', 'name', 'price', 'action']
 
   constructor(private itemDoacaoService: ItemDoacaoService) { }
 
   ngOnInit(): void {
-    this.itemDoacaoService.read().subscribe(itensDoacao => {
-      this.itensDoacao = itensDoacao
-      console.log(itensDoacao)
+    this.itemDoacaoService.getAll().subscribe((itemDoacao: any) => { console.log(itemDoacao); this.itemDoacao = itemDoacao});
+    this.itemDoacaoService.read().subscribe((itemDoacao: any) => {
+      this.itemDoacao = itemDoacao;
+      console.log(itemDoacao)
     })
 
   }

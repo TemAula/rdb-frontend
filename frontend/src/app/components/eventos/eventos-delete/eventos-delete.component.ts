@@ -10,7 +10,8 @@ import { Eventos } from '../eventos.model';
 })
 export class EventosDeleteComponent implements OnInit {
 
-  evento: Eventos;
+  eventos: Eventos;
+  private id: number;
 
   constructor(
     private eventosService: EventosService,
@@ -19,17 +20,22 @@ export class EventosDeleteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.eventosService.readById(id).subscribe(evento => {
-      this.evento = evento;
-    })
-  
+    this.route.params.subscribe(getParam => {
+      this.eventosService.readById(getParam.id).subscribe((eventos: any) =>{
+        this.eventos = eventos;
+      })
+      this.id = getParam.id;
+    }, erro =>{
+      console.log('Erro ao pegar ID', erro);
+    });
   }
 
   deleteEventos(): void{
-    this.eventosService.delete(this.evento.id).subscribe(() => {
-      this.eventosService.showMessage('Evento excluído com sucesso!');
-      this.router.navigate(['/eventos']);
+    this.eventosService.delete(this.id).subscribe(() => {
+      this.eventosService.showMessage('Evento deleado com sucesso!');
+      this.router.navigate(['/eventos'])
+    }, errow => {
+      this.eventosService.showMessage(`Erro na solicitação: ${errow}`);
     })
   }
 
