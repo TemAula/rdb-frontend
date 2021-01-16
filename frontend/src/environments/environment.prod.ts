@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  //https://<ENDEREÇO ACESSÍVEL PELA INTERNET>/api -> Quarkus
+  backendUrl: "/api",
 };
