@@ -12,7 +12,7 @@ Instalar o angular9 ou superior.
 
 `npm install -g @angular/cli`
 
-3. Instalar (node_modules) na pasta backend.
+3. Instalar `node_modules` na pasta backend.
 
 `npm install -g`
 
