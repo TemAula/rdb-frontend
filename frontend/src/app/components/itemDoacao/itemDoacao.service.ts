@@ -1,48 +1,47 @@
-import { map, catchError } from 'rxjs/operators';
-import { ItemDoacao } from './itemDoacao.model';
-import { Injectable } from '@angular/core';
-import { MatSnackBar }from '@angular/material/snack-bar';
-import { HttpClient } from '@angular/common/http';
-import { Observable, EMPTY } from 'rxjs';
+import { map, catchError } from "rxjs/operators";
+import { ItemDoacao } from "./itemDoacao.model";
+import { Injectable } from "@angular/core";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { HttpClient } from "@angular/common/http";
+import { Observable, EMPTY } from "rxjs";
+
+import { environment } from "./../../../environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-export class ItemDoacaoService {  
+export class ItemDoacaoService {
+  baseUrl = environment.backendUrl;
 
-  baseUrl="http://localhost:3001";
+  constructor(private snackBar: MatSnackBar, private http: HttpClient) {}
 
-  constructor(private snackBar: MatSnackBar, private http: HttpClient) {
-
-   }
-
-  showMessage(msg: string, isError: boolean = false): void{
-    this.snackBar.open(msg, 'x', {
+  showMessage(msg: string, isError: boolean = false): void {
+    this.snackBar.open(msg, "x", {
       duration: 3000,
-      horizontalPosition:"right",
+      horizontalPosition: "right",
       verticalPosition: "top",
-      panelClass: isError ? ['msg-error'] : ['msg-success'], 
+      panelClass: isError ? ["msg-error"] : ["msg-success"],
     });
   }
 
-  create(itemDoacao: ItemDoacao){
-    return this.http.post(`${this.baseUrl}/itemdoacao`, itemDoacao)
+  create(itemDoacao: ItemDoacao) {
+    return this.http.post(`${this.baseUrl}/itemdoacao`, itemDoacao);
   }
 
-  getAll(){
+  getAll() {
     return this.http.get(`${this.baseUrl}/itemdoacao`);
   }
 
-  read(){
+  read() {
     return this.http.get(`${this.baseUrl}/itemdoacao`);
   }
 
-  readById(id: number){
+  readById(id: number) {
     const url = `${this.baseUrl}/itemdoacao/${id}`;
-    return this.http.get<ItemDoacao>(url)
+    return this.http.get<ItemDoacao>(url);
   }
 
-  update(itemDoacao: ItemDoacao){
+  update(itemDoacao: ItemDoacao) {
     const url = `${this.baseUrl}/itemdoacao/${itemDoacao.id}`;
     return this.http.put<ItemDoacao>(url, itemDoacao).pipe(
       map((obj) => obj),
@@ -50,12 +49,12 @@ export class ItemDoacaoService {
     );
   }
 
-  delete(id: number){
+  delete(id: number) {
     const url = `${this.baseUrl}/itemdoacao/${id}`;
-    return this.http.delete(url)
+    return this.http.delete(url);
   }
 
-  errorHandler(e: any): Observable<any>{
+  errorHandler(e: any): Observable<any> {
     this.showMessage("Ocorreu um erro!", true);
     return EMPTY;
   }
